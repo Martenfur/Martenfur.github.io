@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>go away</title>
+	</head>
+	<style>
+		body 
+		{
+			background-color:black;
+			overflow-x: hidden;
+			overflow: hidden;
+			max-width: 100%;
+		}
+		\.video-container 
+		{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%; 
+			overflow: hidden;
+			overflow-x: hidden;
+		}
+		.video-container video 
+		{
+			/* Make video to at least 100% wide and tall */
+			min-width: 100%; 
+			min-height: 100%; 
+
+			/* Setting width & height to auto prevents the browser from stretching or squishing the video */
+
+			/* Center the video */
+			position: absolute;	
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		#vidblur 
+		{
+			width: inherit;
+			height: inherit;
+			-o-filter: blur(15px);
+			filter: blur(15px);
+		}
+		#playbutton 
+		{
+			border: 0;
+			background: transparent;
+			box-sizing: border-box;
+			width: 0;
+			height: 74px;
+
+			border-color: transparent transparent transparent #202020;
+			transition: 100ms all ease;
+			cursor: pointer;
+
+			border-style: solid;
+			border-width: 37px 0 37px 60px;
+
+			position: absolute;	
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+	</style>
+	<body>
+		<script>
+			function videoEnded() 
+			{
+				location.href="https://natribu.org/en/";
+			}
+			function onClick()
+			{
+				document.getElementById('vidblur').play();
+				document.getElementById('vidblur').muted = true;
+				document.getElementById('vid').play();
+				document.getElementById('playbutton').hidden = true;
+			}
+		</script>
+		<div class="video-container">
+			<video id="vidblur" width = "100" height = "100" autoplay>
+				<source src="media/foxe_screem.mp4" type="video/mp4">
+				Your browser does not support the video lol.
+			</video>
+		</div>
+		<div class="video-container">
+			<video id="vid" width = "100" height = "100" autoplay="autoplay" onended="videoEnded()" onclick="onClick()">
+				<source src="media/foxe_screem.mp4" type="video/mp4">
+				Your browser does not support the video lol.
+			</video> 
+			<button id='playbutton' onclick="onClick()"></button>
+		</div>
+	</body>
+</html>
